@@ -1,32 +1,38 @@
 #include <iostream>
+#include <vector>
+
+#define FASTIO ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 
 
 using namespace std;
 
 
-int main()
-{
-	int arr[100];
-	int n, m;
-	cin >> n >> m;
+int main() {
+	FASTIO
 
-	for (int i = 0; i < n; i++) {
-		cin >> arr[i];
+	int N, M;
+	cin >> N >> M;
+
+	vector<int> v(N);
+	for(int i = 0; i < N; i++) {
+		cin >> v[i];
 	}
 
-	int result = 0;
 	int sum = 0;
-
-	for (int i = 0; i < n - 2; i++) {
-		for (int j = i + 1; j < n - 1; j++) {
-			for (int k = j + 1; k < n; k++) {
-				sum = arr[i] + arr[j] + arr[k];
-				if (sum > result && sum <= m) result = sum;
+	int max = 0;
+	for(int i = 0; i < v.size() - 2; i++) {
+		for(int j = i + 1; j < v.size() - 1; j++) {
+			for(int k = j + 1; k < v.size(); k++) {
+				sum = v[i] + v[j] + v[k];
+                
+				if(sum > max && sum <= M) {
+					max = sum;
+				}
 			}
 		}
 	}
 
-	cout << result;
+	cout << max;
 
 	return 0;
 }
